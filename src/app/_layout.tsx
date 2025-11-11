@@ -1,0 +1,7 @@
+import { Slot } from "expo-router";
+
+export default function RootLayout(){
+    {/* Slot atribui ao fluxo de navegação "child" o papel de definir como as telas navegarão
+        entre si (ex: /(auth)out /(tabs), sem impor uma forma de navegação no nivel raiz) */}
+        return <Slot/>
+}
