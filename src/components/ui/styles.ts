@@ -28,7 +28,7 @@ export const global = StyleSheet.create({
         marginTop: height * 0.01
     },
     content: {
-        backgroundColor: "#dbbafaff",
+        backgroundColor: "#f3eef8ff",
         borderRadius: 10,
         padding: width * 0.02,
         shadowColor: "#000",
@@ -37,5 +37,44 @@ export const global = StyleSheet.create({
         shadowRadius: 10,
         
 
+    },
+    inputGroup: {
+        marginBottom: height * 0.02,
+
+    },
+    label: {
+        fontSize: 17,
+        fontWeight:"600",
+        color: "#120715ff",
+        marginBottom: height * 0.01
+    },
+    inputIcon: {
+        backgroundColor: "#fff",
+        borderWidth: 1,
+        flexDirection: "row",
+        borderColor: "#420350ff",
+        borderRadius: 10,
+        alignItems: "center",
+        paddingLeft: width * 0.02
+
+    },
+    inputError: {
+        backgroundColor: "#fed5d5ff",
+        borderColor: "rgba(130,0,0,1)",
+
+    },
+    input: {
+        flex: 1,
+        fontSize: 17,
+        color: "#000",
+        fontWeight: "600",
+        paddingHorizontal: width * 0.02,
+
+    },
+    errorText: {
+       color: "red",
+       fontSize: 15,
+       marginTop: height * 0.01,
+       
     },
 })

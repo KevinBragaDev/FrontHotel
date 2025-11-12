@@ -1,27 +1,34 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { Text, TextInput, TextInputProps, View } from "react-native";
-
+import { global } from "./styles";
 type Props = TextInputProps & {
     label: string;
     errorText?: string;
     icon?: keyof typeof MaterialIcons.glyphMap;
 }
-
-export function TextField({label, errorText, icon} : Props) {
+  
+const TextField = ({label, errorText, icon, style, ...restInputProps} : Props) => {
     return (
-        <View>
-            <Text> {label}</Text>
-            <View>
+        <View style={global.inputGroup}>
+            <Text style={global.label}>{label}</Text>
+            <View style={[global.inputIcon, errorText ? global.inputError : null]}>
                 {!! icon && (
                 <View>
-                    <MaterialIcons name={icon} size={18} color="purple"/>
+                    <MaterialIcons name={icon} size={22} color="purple"/>
                 </View>
                 )} 
                 <TextInput
-                    value="Isso é um teste"
+                    keyboardAppearance="dark"
+                    placeholderTextColor="#9ca3af"
+                    style={[global.input, style]}
+                    {...restInputProps}
                 />
             </View>
+            {!! errorText &&
+                <Text style={global.errorText}>{errorText}</Text>
+            }
         </View>
     );
-}
+} 
+export default TextField;
