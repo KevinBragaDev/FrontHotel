@@ -58,6 +58,11 @@ export const global = StyleSheet.create({
         paddingLeft: width * 0.02
 
     },
+    eyeIcon: {
+        position: "absolute",
+        right: 12,
+        top: 42
+    },
     inputError: {
         backgroundColor: "#fed5d5ff",
         borderColor: "rgba(130,0,0,1)",
@@ -76,5 +81,22 @@ export const global = StyleSheet.create({
        fontSize: 15,
        marginTop: height * 0.01,
        
+    },
+    primaryButton: {
+        backgroundColor: "#420350ff",
+        borderRadius: 10,
+        padding: width * 0.025,
+        alignItems: "center"
+    },
+    primaryButtonDisabled: {
+        backgroundColor: "#9ca3af",
+        borderRadius: 10,
+    },
+    primaryButtonText: {
+        color: "#fff",
+        fontSize: 17,
+        fontWeight: "600",
+        letterSpacing: 1.5,
+        textTransform: "uppercase",
     },
 })
