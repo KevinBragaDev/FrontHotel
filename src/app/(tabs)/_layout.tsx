@@ -2,9 +2,17 @@
 explorar, reservas, perfil */
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-export default function TabLayout() {
+const TabLayout = () =>{
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'red' }}>
+    <Tabs screenOptions={{ 
+        tabBarActiveTintColor: 'purple',
+        tabBarActiveBackgroundColor: '#f3eef8ff',
+        tabBarInactiveTintColor: 'gray',
+        headerShown: false,
+        tabBarStyle: {
+            backgroundColor: '#fff',
+        }
+    }}>
       <Tabs.Screen
         name="explorer"
         options={{
@@ -29,3 +37,4 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+export default TabLayout;

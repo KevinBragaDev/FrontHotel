@@ -15,7 +15,8 @@ const RenderLogin = () => {
             subtitle="Faça seu login para continuar!"
             icon="hotel">
 
-            {/* children */}    
+            {/* children */}
+            <View style={global.content}>
             <TextField
                 label="E-mail"
                 icon={"email"}
@@ -30,12 +31,12 @@ const RenderLogin = () => {
             />
 
 
-
+        
         <TouchableOpacity onPress={()=> router.push("/(tabs)/explorer")} style={[global.primaryButton]}>
             <Text style={global.primaryButtonText}>Entrar</Text>
         </TouchableOpacity>
-
-
+        
+        </View>
 
         <View style={{alignItems: "center", marginTop: height * 0.03}}>
             <TouchableOpacity onPress={() => router.push("/(auth)/resetPassword")}>
@@ -45,7 +46,7 @@ const RenderLogin = () => {
                 borderRadius: 10, marginTop: height * 0.03}}></View>
             <TouchableOpacity onPress={() => router.push("/(auth)/register")}style={{ marginTop: height * 0.03}}>
                 <Text style={{color: "#1f1e1eff", fontWeight: 600, fontSize: 17}}>Não possui uma conta?
-                    Cadastre-se agora!
+                    Cadastre-se!
                 </Text>
             </TouchableOpacity>
         </View>

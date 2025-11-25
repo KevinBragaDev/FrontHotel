@@ -1,20 +1,19 @@
-import { useState } from "react";
-import { Modal, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Modal, View } from "react-native";
 import DatePicker, { getFormatedDate } from "react-native-modern-datepicker";
 import { picker } from "../ui/picker";
- 
+
 const RenderDatePicker = () => {
-const [open, setOpen] = useState(false);
-const [date, setDate] = useState("18/11/2025");
- 
-const today = new Date();
-const tomorrow = new Date(today);
-tomorrow.setDate(today.getDate() + 1);
- 
-const startDate = getFormatedDate(tomorrow, "YYYY/MM/DD");
- 
- 
-const options = {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState("18/11/2025");
+
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const startDate = getFormatedDate(tomorrow, "YYYY/MM/DD");
+
+  const options = {
     backgroundColor: '#080516',
     textHeaderColor: '#469ab6',
     textDefaultColor: '#FFFFFF',
@@ -29,42 +28,35 @@ const options = {
     headerAnimationDistance: 100,
     daysAnimationDistance: 200,
     locale: 'portuguese',
-};
- 
-function handleOnPress() {
-    setOpen(!open);
-}
- 
-function handleChange(selectedDate: string) {
+  };
+
+  // 🔥 Abre o modal automaticamente ao montar o componente
+  useEffect(() => {
+    setOpen(true);
+  }, []);
+
+  function handleChange(selectedDate: string) {
     setDate(selectedDate);
-}
- 
-return (
+  }
+
+  return (
     <View>
-    <TouchableOpacity onPress={handleOnPress}>
-        <Text>Open</Text>
-    </TouchableOpacity>
- 
-    <Modal animationType="slide" transparent={true} visible={open}>
+      <Modal animationType="slide" transparent={true} visible={open}>
         <View style={picker.centerView}>
-        <View style={picker.modalView}>
+          <View style={picker.modalView}>
             <DatePicker
-            mode="calendar"
-            selected={date}
-            minimumDate={startDate}
-            onSelectedChange={handleChange}
-            isGregorian={true}
-              options={options} // Adicione as opções aqui
+              mode="calendar"
+              selected={date}
+              minimumDate={startDate}
+              onSelectedChange={handleChange}
+              isGregorian={true}
+              options={options}
             />
- 
-            <TouchableOpacity onPress={handleOnPress}>
-            <Text>Close</Text>
-            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-    </Modal>
+      </Modal>
     </View>
-);
+  );
 };
- 
+
 export default RenderDatePicker;
