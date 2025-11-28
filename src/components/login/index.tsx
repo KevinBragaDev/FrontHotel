@@ -19,14 +19,14 @@ const RenderLogin = () => {
             <View style={global.content}>
             <TextField
                 label="E-mail"
-                icon={"email"}
+                icon={{lib: "MaterialIcons", name: "email"}}
                 placeholder="user@email.com"
                 keyboardType="email-address"
             />
 
             <PasswordField
                 label="Senha"
-                icon={"lock"}
+                icon={{lib: "MaterialIcons", name: "lock"}}
                 placeholder="*********"
             />
 

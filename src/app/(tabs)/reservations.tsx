@@ -1,9 +1,10 @@
 import { View } from 'react-native';
-import { RoomCard } from '../../components/RoomCard';
+import RenderCart from '../../components/cart';
 const reservations = () =>{
     return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <RoomCard />
+            
+            <RenderCart/>
         </View>
   );
 };

@@ -1,11 +1,10 @@
-import RenderDatePicker from '@/components/ui/DatePicker';
-import { View } from 'react-native';
+import RenderExplorer from '@/components/explorer';
 
-const explore = () =>{
+const explorer = () => {
 return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <RenderDatePicker />
-        </View>
+        
+    <RenderExplorer />
+        
 );
 }
-export default explore;
+export default explorer;
