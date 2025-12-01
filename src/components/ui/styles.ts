@@ -11,7 +11,8 @@ export const global = StyleSheet.create({
     },
     container: {
         paddingHorizontal: width * 0.07,
-        paddingTop: height * 0.07
+        paddingTop: height * 0.07,
+        paddingVertical: height * 0.09,
     },
     header: {
         alignItems : "center",

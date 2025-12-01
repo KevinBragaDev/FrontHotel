@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Dimensions, TouchableOpacity, View } from 'react-native';
-import { RoomCard } from '../RoomCard';
 import AuthContainer from '../ui/AuthContainer';
 import DateSelector from '../ui/DateSelector';
+import RoomCard from '../ui/RoomCard';
 import TextField from '../ui/TextField';
 
 const RenderExplorer = () =>{
@@ -36,7 +36,14 @@ const RenderExplorer = () =>{
                     <DateSelector onSelectDate={ (date) => {setCheckOut(date); }} /> )}
                 </View>
             </View>  
-            <RoomCard />
+            <RoomCard 
+                label='Apartamento'
+                icon={{lib: "FontAwesome5", name: "bed"}}
+                description={{
+                text: "1 cama de casal\n1 cama de solteiro",
+                price: 250.00
+            }}
+            />
         </AuthContainer>
     );
 };

@@ -1,5 +1,5 @@
 import { Image, ScrollView, Text, View } from 'react-native';
-import { RoomCard } from '../RoomCard';
+import RoomCard from '../ui/RoomCard';
 
 const renderCart = () => {
 
