@@ -1,6 +1,6 @@
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, Text, TouchableOpacity, View } from "react-native";
 import AuthContainer from "../ui/AuthContainer";
 import PasswordField from "../ui/PasswordField";
 import TextField from "../ui/TextField";
@@ -31,7 +31,27 @@ const RenderLogin = () => {
     const canSubmit = email && password && Object.keys(errors).length === 0 && !loading;
 
     const handleSubmit = async () => {
-        router.push("/(tabs)/explorer");
+        try {
+            setLoading(true);
+            console.log("[LOGIN] Tentando login com: ",{
+                email,
+                password
+            });
+            await new Promise((req) => setTimeout(req, 2000));
+            if(email === "kevin@gmail.com" && password === "123"){
+                Alert.alert("Login bem-sucedido!");
+                router.push("/(tabs)/explorer");
+            } else {
+                Alert.alert("Login invalido!");
+                return;
+            }
+        } catch (erro) {
+            Alert.alert("Erro", "Falha ao logar");
+        }
+        finally {
+            setLoading(false);
+        }
+
     }
 
     const { width, height } = Dimensions.get("window");

@@ -52,7 +52,7 @@ const RenderRegister = () => {
  
             <TextField
                 label="Nome completo"
-                icon={{ lib: "FontAwesome6", name: "drive-file-rename-outline"}}
+                icon={{ lib: "MaterialIcons", name: "drive-file-rename-outline"}}
                 placeholder="Digite seu nome completo"
                 value={Nome}
                 onChangeText={(text) => setNome(text)}
@@ -60,7 +60,7 @@ const RenderRegister = () => {
  
             <TextField
                 label="CPF"
-                icon={{ lib: "FontAwesome6", name: "123"}}
+                icon={{ lib: "MaterialIcons", name: "123"}}
                 placeholder="Digite seu CPF"
                 value={CPF}
                 onChangeText={(text) => setCPF(text)}
@@ -68,7 +68,7 @@ const RenderRegister = () => {
            
             <TextField
                 label="Telefone"
-                 icon={{ lib: "FontAwesome6", name: "local-phone"}}
+                 icon={{ lib: "MaterialIcons", name: "local-phone"}}
                 placeholder="Digite seu telefone com DDD!"
                 value={telefone}
                 onChangeText={(text) => setTelefone(text)}
@@ -76,7 +76,7 @@ const RenderRegister = () => {
  
             <TextField
                 label="E-mail"
-                icon={{ lib: "FontAwesome6", name: "email"}}
+                icon={{ lib: "MaterialIcons", name: "email"}}
                 placeholder="user@email.com"
                 keyboardType="email-address"
                  value={email}
@@ -114,4 +114,4 @@ const RenderRegister = () => {
 
 
 
-    
+    export default RenderRegister

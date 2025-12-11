@@ -51,7 +51,7 @@ const RenderPasswordreset = () => {
  
         <TextField
             label=""
-            icon={{ lib: "FontAwesome6", name: "email" }}
+            icon={{ lib: "MaterialIcons", name: "email" }}
             placeholder="user@email.com"
             keyboardType="email-address"
             value={email}
@@ -66,3 +66,5 @@ const RenderPasswordreset = () => {
 </View>
  
     )};
+
+    export default RenderPasswordreset;
