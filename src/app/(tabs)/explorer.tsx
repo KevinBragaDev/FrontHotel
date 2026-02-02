@@ -1,10 +1,9 @@
-import RenderExplorer from '@/components/explorer';
+import RenderExplorer from "@/components/explorer";
 
-const explorer = () => {
-return (
-        
-    <RenderExplorer />
-        
-);
+const Explorer = () => {
+    return (
+        <RenderExplorer />
+    );
 }
-export default explorer;
+
+export default Explorer;

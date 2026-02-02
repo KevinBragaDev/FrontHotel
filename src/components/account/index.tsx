@@ -1,13 +1,14 @@
-import { Text, View } from 'react-native';
-import AuthContainer from '../ui/AuthContainer';
+import { View } from "react-native";
+import AuthContainer from "../ui/AuthContainer";
 
-const RenderAccount = () =>{
-    return (
-        <AuthContainer>
+const RenderAccount = () => {
+  return (
+    <AuthContainer>
+        {/*children */}
             <View>
-                <Text>Futura tela Account</Text>
+             
             </View>
-        </AuthContainer>
-    );
+    </AuthContainer>
+  );
 };
 export default RenderAccount;
