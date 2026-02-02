@@ -1,10 +1,8 @@
-import { Text, View } from 'react-native';
+import RenderAccount from '@/components/account';
  
 const account = () =>{
     return (
-    <View>
-        <Text>Aba de conta</Text>
-    </View>
+    <RenderAccount />
   );
 };
 export default account;
