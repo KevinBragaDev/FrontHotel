@@ -2,19 +2,24 @@ import { FontAwesome5, FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import { Text, TextInput, TextInputProps, View } from "react-native";
 import { global } from "./styles";
+import MaskInput from "react-native-mask-input"
 
 //Bibliotecas de ícones aceitas
 type NameIcon = 
     | {lib: "MaterialIcons"; name: keyof typeof MaterialIcons.glyphMap }
     | {lib: "FontAwesome6"; name: keyof typeof FontAwesome6.glyphMap }
     | {lib: "FontAwesome5"; name: keyof typeof FontAwesome5.glyphMap };
-type Props = TextInputProps & {
+type Props = Omit<TextInputProps, "onChangeText"> & {
     label: string;
     errorText?: string; 
     icon?: NameIcon;
+    mask?: any;
+    onChangeText?: (masked: string, unmasked?: string) => void;
 }
  
-const TextField = ({label, errorText, icon, style, ...restInputProps } : Props) => {
+const TextField = ({label, errorText, icon, style, mask, ...restInputProps } : Props) => {
+    const InputComponent = mask ? MaskInput : TextInput;
+
     return (
         <View style={global.inputGroup}>
             <Text style={global.label}>{label}</Text>
@@ -32,10 +37,11 @@ const TextField = ({label, errorText, icon, style, ...restInputProps } : Props) 
                 )}
         </View>
                 )}
-    <TextInput
+    <InputComponent
                     keyboardAppearance="dark"
                     placeholderTextColor="#9ca3af"
                     style={[global.input, style]}
+                    mask={mask}
                     /* const TextField = (props: Props) => {
                         const label = props.label;
                         const errorText = props.errorText;
