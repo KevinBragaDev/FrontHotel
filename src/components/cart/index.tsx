@@ -11,6 +11,7 @@ type Room = {
   beds: number;
   checkin: string;
   checkout: string;
+  image?: any; // Opcional
 };
 
 const { width } = Dimensions.get('window');
@@ -71,17 +72,32 @@ const Reservations = () => {
           style={{
             marginBottom: 40,
             width: '100%',
-            maxWidth: width - 40, // evita esticar fora da tela
+            maxWidth: width - 40,
           }}
         >
-          {/* RoomCard com informações básicas */}
+          {/* RoomCard */}
           <RoomCard
             label={room.name}
             description={{
               text: room.description,
               price: room.price,
             }}
-          />
+          >
+            {/* Botão Ver detalhes dentro do RoomCard */}
+            <TouchableOpacity
+              onPress={() => openModal(room)}
+              style={{
+                marginTop: 15,
+                backgroundColor: '#420350ff',
+                padding: 14,
+                borderRadius: 6,
+                alignItems: 'center',
+                width: '100%',
+              }}
+            >
+              <Text style={{ color: '#fff', fontWeight: '600' }}>Ver detalhes</Text>
+            </TouchableOpacity>
+          </RoomCard>
 
           {/* Check-in */}
           <View
@@ -118,20 +134,6 @@ const Reservations = () => {
               Check-out: {room.checkout}
             </Text>
           </View>
-
-          {/* Botão para abrir modal com detalhes */}
-          <TouchableOpacity
-            onPress={() => openModal(room)}
-            style={{
-              marginTop: 15,
-              backgroundColor: '#420350ff',
-              padding: 14,
-              borderRadius: 6,
-              alignItems: 'center',
-            }}
-          >
-            <Text style={{ color: '#fff', fontWeight: '600' }}>Ver detalhes</Text>
-          </TouchableOpacity>
         </View>
       ))}
 

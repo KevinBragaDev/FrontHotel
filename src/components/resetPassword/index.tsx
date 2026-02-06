@@ -38,8 +38,8 @@ const RenderPasswordreset = () => {
         <View style={{ flex: 1}}>
     <TouchableOpacity
         style={{ position: 'absolute', top: 50, left: 10, zIndex: 10 }}
-        onPress={handleSubmit}
-        disabled={!canSubmit}>
+        onPress={() => router.back()}
+        >
 
         <MaterialIcons name="arrow-back" size={28} color="#000000ff" />
     </TouchableOpacity>
@@ -59,7 +59,10 @@ const RenderPasswordreset = () => {
             errorText={errors.email}
         />
  
-        <TouchableOpacity style={[global.primaryButton]}>
+        <TouchableOpacity style={[global.primaryButton]}
+            onPress={handleSubmit}
+            disabled={!canSubmit}
+            >
             <Text style={global.primaryButtonText}>Redefinir senha</Text>
         </TouchableOpacity>
     </AuthContainer>

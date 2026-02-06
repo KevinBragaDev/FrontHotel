@@ -1,4 +1,5 @@
 import { FontAwesome5, FontAwesome6, MaterialIcons } from "@expo/vector-icons";
+import { ReactNode } from "react";
 import {
   Dimensions,
   Image,
@@ -14,17 +15,23 @@ type NameIcon =
   | { lib: "FontAwesome6"; name: keyof typeof FontAwesome6.glyphMap }
   | { lib: "FontAwesome5"; name: keyof typeof FontAwesome5.glyphMap };
 
-type Infos = { title?: string; text: string; price: number };
+type Infos = {
+  title?: string;
+  text: string;
+  price: number;
+};
 
 type Props = {
   image?: ImageSourcePropType;
   label?: string;
   description?: Infos;
   icon?: NameIcon;
+  children?: ReactNode;
 };
 
 const { width, height } = Dimensions.get("window");
-const RoomCard = ({ image, label, description, icon }: Props) => {
+
+const RoomCard = ({ image, label, description, icon, children }: Props) => {
   return (
     <View style={global.content}>
       {!!image && (
@@ -32,18 +39,19 @@ const RoomCard = ({ image, label, description, icon }: Props) => {
           <Image style={styles.image} source={image} resizeMode="cover" />
         </View>
       )}
+
       <View>
         {!!label && (
           <Text
-            style={{ fontSize: 23, fontWeight: 600, marginTop: height * 0.02 }}
+            style={{ fontSize: 23, fontWeight: "600", marginTop: height * 0.02 }}
           >
             {label}
           </Text>
         )}
+
         <View style={styles.container}>
           <View
             style={{
-              display: "flex",
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-evenly",
@@ -62,20 +70,33 @@ const RoomCard = ({ image, label, description, icon }: Props) => {
                 )}
               </View>
             )}
+
             {!!description && (
               <View style={styles.description}>
                 <View>
                   {!!description.title && (
-                    <Text style={global.label}>{description.title}</Text>
+                    <Text style={global.label}>
+                      {description.title}
+                    </Text>
                   )}
                   <Text style={styles.text}>{description.text}</Text>
                 </View>
+
                 <View style={{ marginTop: height * 0.04 }}>
-                  <Text style={styles.price}>R$ {description.price}</Text>
+                  <Text style={styles.price}>
+                    R$ {description.price}
+                  </Text>
                 </View>
               </View>
             )}
           </View>
+
+          {/* 🔽 ÁREA DO BOTÃO / AÇÕES */}
+          {!!children && (
+            <View style={styles.actions}>
+              {children}
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -100,62 +121,25 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 10,
     elevation: 2,
+    paddingBottom: 10,
   },
   description: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    gap: 12,
   },
   text: {
     fontSize: 15,
   },
   price: {
     fontSize: 17,
-    fontWeight: 600,
+    fontWeight: "600",
     color: "purple",
   },
+  actions: {
+    marginTop: 12,
+    paddingHorizontal: 16,
+  },
 });
+
 export default RoomCard;
-
-// export const RoomCard = () => {
-//   return (
-//     <View style={styles.card}>
-
-//       {/* CONTAINER DA IMAGEM */}
-//       <View style={styles.imageContainer}>
-//         <Image
-//           source={require('@/assets/images/img2.jpg')}
-//           style={styles.image}
-//         />
-
-//         {/* Overlay leve */}
-//         <View style={styles.overlay} />
-
-//         {/* Badge de popular */}
-//         <View style={styles.popularBadge}>
-//           <Text style={styles.popularText}>Popular</Text>
-//         </View>
-//       </View>
-
-//       {/* INFORMAÇÕES */}
-//       <View style={styles.infoSection}>
-
-//         <View style={styles.header}>
-//           <Text style={styles.title}>Suíte Premium Vista Mar</Text>
-
-//           <Text style={styles.price}>R$ 450</Text>
-//         </View>
-
-//         {/* Rodapé */}
-//         <View style={styles.footer}>
-//           <Text style={styles.featureText}>2 noites incluídas</Text>
-
-//           <TouchableOpacity style={styles.actionButton}>
-//             <Text style={styles.actionText}>Reservar</Text>
-//           </TouchableOpacity>
-//         </View>
-
-//       </View>
-//     </View>
-//   );
-// };

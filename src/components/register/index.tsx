@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { useMemo, useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import { Masks } from 'react-native-mask-input';
 import AuthContainer from "../ui/AuthContainer";
 import PasswordField from "../ui/PasswordField";
 import TextField from "../ui/TextField";
@@ -63,7 +64,8 @@ const RenderRegister = () => {
                 icon={{ lib: "MaterialIcons", name: "123"}}
                 placeholder="Digite seu CPF"
                 value={CPF}
-                onChangeText={(text) => setCPF(text)}
+                mask={Masks.BRL_CPF}
+                onChangeText={(masked,unmasked) => setCPF(unmasked ?? '')}
             />
            
             <TextField
@@ -71,7 +73,8 @@ const RenderRegister = () => {
                  icon={{ lib: "MaterialIcons", name: "local-phone"}}
                 placeholder="Digite seu telefone com DDD!"
                 value={telefone}
-                onChangeText={(text) => setTelefone(text)}
+                mask={Masks.BRL_PHONE}
+                onChangeText={(masked,unmasked) => setTelefone(unmasked ?? '')}
             />  
  
             <TextField

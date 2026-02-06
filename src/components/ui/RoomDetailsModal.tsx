@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-    Image,
-    Modal,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    View,
+  Image,
+  Modal,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
 
 type RoomDetails = {
@@ -25,6 +25,7 @@ type Props = {
 const RoomDetailsModal = ({ visible, onClose, room }: Props) => {
   return (
     <Modal visible={visible} animationType="slide" transparent>
+      {/* Fundo semitransparente */}
       <TouchableWithoutFeedback onPress={onClose}>
         <View
           style={{
@@ -34,6 +35,7 @@ const RoomDetailsModal = ({ visible, onClose, room }: Props) => {
             padding: 20,
           }}
         >
+          {/* Container do modal */}
           <TouchableWithoutFeedback>
             <View
               style={{
@@ -67,6 +69,20 @@ const RoomDetailsModal = ({ visible, onClose, room }: Props) => {
               <Text style={{ fontSize: 16, fontWeight: '600', color: 'purple' }}>
                 R$ {room.price}
               </Text>
+
+              {/* Botão reservar */}
+              <TouchableOpacity
+                onPress={() => alert('Quarto reservado! ✅')}
+                style={{
+                  backgroundColor: '#28a745', // verde
+                  padding: 14,
+                  borderRadius: 6,
+                  alignItems: 'center',
+                  marginTop: 10,
+                }}
+              >
+                <Text style={{ color: '#fff', fontWeight: '600' }}>Reservar</Text>
+              </TouchableOpacity>
 
               {/* Botão fechar */}
               <TouchableOpacity
