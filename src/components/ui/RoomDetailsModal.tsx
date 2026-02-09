@@ -7,6 +7,8 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
+import { useReservations } from '@/context/ReservationsContext';
+import { useRouter } from 'expo-router';
 
 type RoomDetails = {
   image: any; // Pode ser ImageSourcePropType
@@ -20,9 +22,13 @@ type Props = {
   visible: boolean;
   onClose: () => void;
   room: RoomDetails;
+  checkIn?: string;
+  checkOut?: string;
 };
 
-const RoomDetailsModal = ({ visible, onClose, room }: Props) => {
+const RoomDetailsModal = ({ visible, onClose, room, checkIn, checkOut }: Props) => {
+  const { addReservation } = useReservations();
+  const router = useRouter();
   return (
     <Modal visible={visible} animationType="slide" transparent>
       {/* Fundo semitransparente */}
@@ -72,7 +78,19 @@ const RoomDetailsModal = ({ visible, onClose, room }: Props) => {
 
               {/* Botão reservar */}
               <TouchableOpacity
-                onPress={() => alert('Quarto reservado! ✅')}
+                onPress={() => {
+                  addReservation({
+                    name: room.name,
+                    description: room.description,
+                    price: room.price,
+                    beds: room.beds,
+                    image: room.image,
+                    checkIn: checkIn,
+                    checkOut: checkOut,
+                  });
+                  onClose();
+                  router.push('/reservations');
+                }}
                 style={{
                   backgroundColor: '#28a745', // verde
                   padding: 14,

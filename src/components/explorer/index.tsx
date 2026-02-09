@@ -124,6 +124,8 @@ const RenderExplorer = () => {
               beds: selectedRoom.beds,
               image: selectedRoom.image,
             }}
+            checkIn={checkIn}
+            checkOut={checkOut}
           />
         )}
 
