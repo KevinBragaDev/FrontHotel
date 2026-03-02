@@ -1,8 +1,10 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { FontAwesome6 } from "@expo/vector-icons";
 import React from "react";
 import { KeyboardAvoidingView, Platform, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { global } from "./styles";
+
 
 
 type Props = {
@@ -14,6 +16,10 @@ type Props = {
 
 
 const AuthContainer = ({title, subtitle, icon, children}: Props) => {
+      const { isLoading } = useAuth();
+    // adicionar um componente de carregamento aqui, depois
+    if (isLoading) return null; // Ou um componente de carregamento
+   
     return (
         <SafeAreaView style={global.safeArea}>
             <KeyboardAvoidingView behavior={Platform.OS ==="ios" ? 'padding' : 'height'} style={global.keyboardAvoiding}>

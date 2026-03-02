@@ -130,4 +130,16 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     letterSpacing: 0.3,
   },
+
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#DC143C',
+  },
+  logoutText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+    marginLeft: 8,
+  }
 });

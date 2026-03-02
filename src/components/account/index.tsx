@@ -6,8 +6,12 @@ import {
 } from 'react-native';
 import { Masks } from 'react-native-mask-input';
 
+import { useAuth } from '@/contexts/AuthContext';
+import { FontAwesome6 } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import AuthContainer from '../ui/AuthContainer';
 import TextField from '../ui/TextField';
+import { styles } from '../ui/cardStyle';
 import ChangePasswordModal from "../ui/modal";
 
 const RenderAccount = () => {
@@ -23,6 +27,13 @@ const RenderAccount = () => {
   const [passwordError, setPasswordError] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
+  const {signOut} = useAuth();
+  const router = useRouter();
+  const logout = async () => {
+    await signOut();
+    router.replace('/(auth)');
+  }
+
   const handleChangePassword = () => {
     if (newPassword !== confirmPassword) {
       setPasswordError('As senhas não conferem');
@@ -33,7 +44,10 @@ const RenderAccount = () => {
     setShowPasswordModal(false);
   };
 
+  
+
   return (
+    
     <AuthContainer
       title="Minha Conta"
       subtitle="Gerencie suas informações e preferencias"
@@ -100,6 +114,11 @@ const RenderAccount = () => {
             Privacidade e Segurança
           </Text>
         </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+            <FontAwesome6 name="right-from-bracket" size={40} color="#DC143C" />
+            <Text style={styles.logoutText}>Sair</Text>
+            </TouchableOpacity>
       </View>
 
       <ChangePasswordModal

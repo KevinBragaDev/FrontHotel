@@ -1,40 +1,60 @@
-/*Função: definir o fluxo de navegação entre as telas disponiveis em Tab Navigator 
-explorar, reservas, perfil */
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Tabs } from 'expo-router';
-const TabLayout = () =>{
+/*Função: definir o fluxo de navegação entre as telas disponíveis em Tab Navigator:
+Explorar, Reservas, Perfil*/
+import { useAuth } from "@/contexts/AuthContext";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Redirect, Tabs } from "expo-router";
+const TabLayout = () => {
+  const { token, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
+  if (!token) {
+    return <Redirect href="/(auth)" />;
+  }
+
   return (
-    <Tabs screenOptions={{ 
-        tabBarActiveTintColor: 'purple',
-        tabBarActiveBackgroundColor: '#f3eef8ff',
-        tabBarInactiveTintColor: 'gray',
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "#420350ff",
+        tabBarInactiveTintColor: "#7c7c7cff",
         headerShown: false,
-        tabBarStyle: {
-            backgroundColor: '#fff',
-        }
-    }}>
+        tabBarStyle: { backgroundColor: "#fef6ffff" },
+      }}
+    >
       <Tabs.Screen
         name="explorer"
         options={{
-          title: 'Pesquisar',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="search" color={color} />,
+          title: "Explorar",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome size={25} name="search" color={color} />
+          ),
         }}
-    />
+      />
+
       <Tabs.Screen
         name="reservations"
         options={{
-          title: 'Reservas',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+          title: "Reservar",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={25}
+              name="bag-suitcase"
+              color={color}
+            />
+          ),
         }}
-    />
+      />
+
       <Tabs.Screen
         name="account"
         options={{
-          title: 'Minha Conta',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+          title: "Minha conta",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons size={25} name="account" color={color} />
+          ),
         }}
-    />
+      />
     </Tabs>
   );
-}
+};
 export default TabLayout;

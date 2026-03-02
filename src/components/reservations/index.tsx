@@ -6,7 +6,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const Reservations = () => {
-  const { reservations } = useReservations();
+  const { reservations } = useReservations(); // ✅ Agora sempre vai ter o provider acima
 
   return (
     <AuthContainer>
@@ -17,7 +17,7 @@ const Reservations = () => {
         </View>
 
         {reservations.length === 0 ? (
-          <View style={styles.empty}> 
+          <View style={styles.empty}>
             <Text style={styles.emptyTitle}>Nenhuma reserva ainda</Text>
             <Text style={styles.emptySubtitle}>Faça uma reserva para vê-la aqui.</Text>
           </View>
