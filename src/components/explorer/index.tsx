@@ -1,9 +1,12 @@
+import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
-import { Dimensions, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import AuthContainer from "../ui/AuthContainer";
 import DateSelector from "../ui/DateSelector";
+import InputSpin from "../ui/InputSpin";
 import RoomCard from "../ui/RoomCard";
 import RoomDetailsModal from "../ui/RoomDetailsModal"; // Import do modal
+import { global } from "../ui/styles";
 import TextField from "../ui/TextField";
 
 const RenderExplorer = () => {
@@ -13,6 +16,8 @@ const RenderExplorer = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [calendar, setCalendar] = useState<"checkin" | "checkout" | null>(null);
+  const [qntGuests, setQntGuests] = useState<number>(1);
+  const {consulta} = useAuth();
 
   // 🔹 Estado para modal
   const [modalVisible, setModalVisible] = useState(false);
@@ -90,6 +95,53 @@ const RenderExplorer = () => {
             />
           )}
         </View>
+        <View>
+
+          <Text style={[global.label, { textAlign: "center" }]}>Quantidade de hóspedes</Text>
+
+          <View style={{ alignItems: "center", width: "100%", marginTop: 10 }}>
+            <InputSpin
+              guests={qntGuests}
+              onSelectSpin={setQntGuests}
+              maxGuests={6}
+              minGuests={1}
+              step={1}
+              colorMax="#420350ff"
+              colorMin="#420350ff"
+            />
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={{
+              width: width * 0.75,
+              marginTop: height * 0.02,
+              backgroundColor: "#420350ff",
+              paddingVertical: 10,
+              borderRadius: 5,
+              alignItems: "center",
+              justifyContent: "center",
+              alignSelf: "center",
+              elevation: 3,
+            }}
+            onPress={async () => {
+              try {
+                await consulta(checkIn, checkOut, qntGuests);
+              } catch (erro: any) {
+                Alert.alert("Nessas datas", erro?.message || "Sem quartos disponíveis");
+              }
+            }}
+          >
+            <Text
+              style={{
+                color: "#FFF",
+                fontSize: 16,
+                fontWeight: "600",
+              }}
+            >
+              Consulta
+            </Text>
+          </TouchableOpacity>0
+        </View>
 
         {/* CARD DO QUARTO */}
         <RoomCard
@@ -128,7 +180,6 @@ const RenderExplorer = () => {
             checkOut={checkOut}
           />
         )}
-
       </ScrollView>
     </AuthContainer>
   );

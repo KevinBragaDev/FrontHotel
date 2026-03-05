@@ -27,7 +27,7 @@ const RenderAccount = () => {
   const [passwordError, setPasswordError] = useState('');
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
-  const {signOut} = useAuth();
+  const { signOut } = useAuth();
   const router = useRouter();
   const logout = async () => {
     await signOut();
@@ -44,10 +44,10 @@ const RenderAccount = () => {
     setShowPasswordModal(false);
   };
 
-  
+
 
   return (
-    
+
     <AuthContainer
       title="Minha Conta"
       subtitle="Gerencie suas informações e preferencias"
@@ -88,7 +88,7 @@ const RenderAccount = () => {
         />
 
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={() => { }}
           style={{
             backgroundColor: '#420350ff',
             padding: 14,
@@ -114,11 +114,18 @@ const RenderAccount = () => {
             Privacidade e Segurança
           </Text>
         </TouchableOpacity>
-        
+
+
         <TouchableOpacity style={styles.logoutButton} onPress={logout}>
-            <FontAwesome6 name="right-from-bracket" size={40} color="#DC143C" />
-            <Text style={styles.logoutText}>Sair</Text>
-            </TouchableOpacity>
+          <FontAwesome6
+            name="right-from-bracket"
+            size={20}
+            color="#fff"
+            style={styles.logoutIcon}
+          />
+          <Text style={styles.logoutText}>Sair</Text>
+        </TouchableOpacity>
+
       </View>
 
       <ChangePasswordModal

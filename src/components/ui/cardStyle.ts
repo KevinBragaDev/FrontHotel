@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from "react-native";
- 
+
 const { width, height } = Dimensions.get('window');
- 
+
 export const styles = StyleSheet.create({
   card: {
     backgroundColor: "#fff",
@@ -132,14 +132,24 @@ export const styles = StyleSheet.create({
   },
 
   logoutButton: {
-    flexDirection: 'row',
+    width: width * 0.86,
+    height: 48,
+    borderRadius: 5,
+    justifyContent: 'center', 
     alignItems: 'center',
     backgroundColor: '#DC143C',
+    position: 'relative',
   },
+
+  logoutIcon: {
+    position: 'absolute',
+    left: 16,
+  },
+
   logoutText: {
     color: '#fff',
     fontSize: 14,
     fontWeight: '600',
-    marginLeft: 8,
+    textAlign: 'center',
   }
 });

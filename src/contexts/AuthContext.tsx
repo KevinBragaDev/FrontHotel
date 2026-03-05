@@ -14,6 +14,7 @@ type AuthContextProps = {
     cpf: string
   ) => Promise<void>;
   signOut: () => Promise<void>;
+  consulta: (checkIn: string, checkOut: string, qntGuests: number) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -125,6 +126,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       signIn,
       signUp,
       signOut,
+      consulta,
     }),
     [token, isLoading]
   );
@@ -132,6 +134,20 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+// CONSULTA
+  async function consulta(checkIn: string, checkOut: string, qntGuests: number) {
+    const res = await fetch(`${API_URL}/api/consulta`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ checkIn, checkOut, qntGuests }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      throw new Error(err?.message || "Sem quartos disponíveis");
+    }
+  }
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth() deve ser usado dentro de AuthProvider");
